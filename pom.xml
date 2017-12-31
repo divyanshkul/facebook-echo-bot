@@ -11,6 +11,8 @@
   <properties>
     <!-- the main verticle -->
     <main.verticle>com.example.chatbot.FacebookBotVerticle</main.verticle>
+    <!-- WildFly Swarm version 2017.12.1 -->
+    <version.wildfly-swarm>2017.12.1</version.wildfly-swarm>
   </properties>
 
   <dependencies>
@@ -36,6 +38,15 @@
       <groupId>io.vertx</groupId>
       <artifactId>vertx-config</artifactId>
       <version>${project.version}</version>
+    </dependency>
+
+    <!-- WidlFly Swarm dependency, as of now, ver. 2017.12.1 -->
+    <dependency>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>bom</artifactId>
+      <version>${version.wildfly-swarm}</version>
+      <type>pom</type>
+      <scope>import</scope>
     </dependency>
 
   </dependencies>
@@ -95,6 +106,22 @@
           </processTypes>
         </configuration>
       </plugin>
+
+      <!-- WildFly Swarm plugin -->
+      <plugin>
+        <groupId>org.wildfly.swarm</groupId>
+        <artifactId>wildfly-swarm-plugin</artifactId>
+        <version>${version.wildfly-swarm}</version>
+        <executions>
+          <execution>
+            <id>package</id>
+            <goals>
+              <goal>package</goal>
+            </goals>
+          </execution>
+        </executions>
+  </plugin>
+
     </plugins>
   </build>
 
